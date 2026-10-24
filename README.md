@@ -19,9 +19,10 @@ Each service module adds its data to `homelab.backup.paths` / `prepareCommands`.
    sudo -i
    bash <(curl -sL https://raw.githubusercontent.com/J-x-O/home-server/main/install.sh)
    ```
+   The script handles UEFI and legacy BIOS (the Y50 only boots legacy).
    After reboot: log in on the console, join Wi-Fi with `nmtui`, then copy the generated
-   hardware config back and commit it:
-   `scp jesco@<ip>:/etc/nixos/hosts/homeserver/hardware-configuration.nix hosts/homeserver/`
+   configs back and commit them:
+   `scp jesco@<ip>:/etc/nixos/hosts/homeserver/{hardware-configuration,bootloader}.nix hosts/homeserver/`
    Backups stay disabled until `secrets/secrets.yaml` exists (steps 2–4).
 
 2. **Storage Box**: in the Hetzner console, enable SSH support and set the username in

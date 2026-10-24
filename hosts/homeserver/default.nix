@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./bootloader.nix
     ../../modules
   ];
 
@@ -11,8 +12,6 @@
   networking.networkmanager.enable = true;
   time.timeZone = "Europe/Berlin";
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   services.openssh = {
     enable = true;
