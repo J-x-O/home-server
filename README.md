@@ -14,7 +14,7 @@ Each service module adds its data to `homelab.backup.paths` / `prepareCommands`.
 
 ## First-time setup
 
-1. **Install**: boot the NixOS minimal ISO (UEFI), get internet, then
+1. **Install**: boot the NixOS minimal ISO, get internet, then
    ```sh
    sudo -i
    bash <(curl -sL https://raw.githubusercontent.com/J-x-O/home-server/main/install.sh)
