@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -11,6 +11,7 @@
   # Wi-Fi was joined once with `nmtui`; NetworkManager keeps the profile in /etc/NetworkManager.
   networking.networkmanager.enable = true;
   time.timeZone = "Europe/Berlin";
+  console.keyMap = "de";
 
 
   services.openssh = {
@@ -28,6 +29,27 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEbov1bdOCO8xnq84poRsE6Xa71vQnfblcoxn685GaoJ jesco@tower"
     ];
+  };
+
+  # Diagnostics for when the network is down and nothing can be fetched.
+  environment.systemPackages = with pkgs; [
+    git
+    iw
+    pciutils
+    usbutils
+  ];
+
+  # It's a laptop: keep running with the lid closed and never suspend.
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "no";
+    AllowHibernation = "no";
+    AllowHybridSleep = "no";
+    AllowSuspendThenHibernate = "no";
   };
 
   # Login is key-only, so there is no password to type for sudo.
@@ -64,6 +86,12 @@
   };
 
   homelab.uptime-kuma.enable = true;
+  homelab.home-assistant.enable = true;
+  homelab.immich.enable = true;
+  homelab.paperless = {
+    enable = true;
+    url = "http://192.168.178.40:28981";
+  };
 
   # Don't change this after the first install, even when upgrading NixOS.
   system.stateVersion = "26.05";

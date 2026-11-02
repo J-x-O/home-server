@@ -1,2 +1,10 @@
 result
 result-*
+
+# Private keys that must never be committed. secrets/secrets.yaml is
+# sops-encrypted and is meant to be tracked.
+storagebox_key*
+keys.txt
+*.pem
+id_*
+!*.pub

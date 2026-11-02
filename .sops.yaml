@@ -3,7 +3,7 @@ keys:
   # Your personal key: `age-keygen -o ~/.config/sops/age/keys.txt`, then use the public key.
   - &admin age1REPLACE_WITH_YOUR_PUBLIC_KEY
   # The server's key, derived from its SSH host key: `ssh-keyscan -t ed25519 <server> | ssh-to-age`
-  - &homeserver age1REPLACE_WITH_SERVER_PUBLIC_KEY
+  - &homeserver age1xy9ntmrhn6epwu5cg0fsh5rpv6fkcj4al4vz5xwt0lug2hdc3peqrvgzxe
 
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
