@@ -35,6 +35,13 @@ in
     # Home Assistant's default web port.
     networking.firewall.allowedTCPPorts = [ 8123 ];
 
+    homelab.dashboard.apps."Home Assistant" = {
+      group = "Home";
+      port = 8123;
+      description = "Smart home";
+      icon = "home-assistant.png";
+    };
+
     # The UI-managed includes above must exist or Home Assistant won't start.
     systemd.tmpfiles.rules = [
       "f ${config.services.home-assistant.configDir}/automations.yaml 0644 hass hass"

@@ -88,10 +88,14 @@
   homelab.uptime-kuma.enable = true;
   homelab.home-assistant.enable = true;
   homelab.immich.enable = true;
-  homelab.paperless = {
-    enable = true;
-    url = "http://192.168.178.40:28981";
-  };
+  homelab.paperless.enable = true;
+  homelab.dashboard.enable = true;
+
+  homelab.hostNames = [
+    "homeserver"
+    "homeserver.fritz.box"
+    "192.168.178.40"
+  ];
 
   # Don't change this after the first install, even when upgrading NixOS.
   system.stateVersion = "26.05";

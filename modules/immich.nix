@@ -19,6 +19,13 @@ in
       openFirewall = true;
     };
 
+    homelab.dashboard.apps.Immich = {
+      group = "Media";
+      port = config.services.immich.port;
+      description = "Photos and videos";
+      icon = "immich.png";
+    };
+
     homelab.backup = {
       paths = [ media ];
       # Thumbnails and transcoded videos are regenerated from the originals.

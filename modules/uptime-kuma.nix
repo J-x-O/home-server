@@ -30,6 +30,13 @@ in
 
     networking.firewall.allowedTCPPorts = [ cfg.port ];
 
+    homelab.dashboard.apps."Uptime Kuma" = {
+      group = "System";
+      inherit (cfg) port;
+      description = "Is everything up?";
+      icon = "uptime-kuma.png";
+    };
+
     # DynamicUser makes /var/lib/uptime-kuma a symlink; back up the real directory,
     # plus a consistent snapshot of the live SQLite database.
     homelab.backup = {
