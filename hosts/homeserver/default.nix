@@ -91,6 +91,7 @@
   homelab.paperless.enable = true;
   homelab.dashboard.enable = true;
 
+  homelab.domain = "home.jesco.dev";
   homelab.hostNames = [
     "homeserver"
     "homeserver.fritz.box"

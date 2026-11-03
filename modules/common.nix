@@ -1,6 +1,16 @@
 { lib, ... }:
 
 {
+  options.homelab.domain = lib.mkOption {
+    type = lib.types.nullOr lib.types.str;
+    default = null;
+    example = "home.example.com";
+    description = ''
+      Domain the apps are served under via HTTPS (`<subdomain>.<domain>`), with the
+      start page on the domain itself. Needs `*.<domain>` pointing at the server.
+    '';
+  };
+
   options.homelab.hostNames = lib.mkOption {
     type = lib.types.nonEmptyListOf lib.types.str;
     example = [

@@ -1,7 +1,7 @@
 # Replace both keys before running `sops secrets/secrets.yaml`.
 keys:
   # Your personal key: `age-keygen -o ~/.config/sops/age/keys.txt`, then use the public key.
-  - &admin age1REPLACE_WITH_YOUR_PUBLIC_KEY
+  - &admin age12jqlkt9y7k5qknak6p2h4808zws78evgp99kvtztls9xdhndjdqsnxcm39
   # The server's key, derived from its SSH host key: `ssh-keyscan -t ed25519 <server> | ssh-to-age`
   - &homeserver age1xy9ntmrhn6epwu5cg0fsh5rpv6fkcj4al4vz5xwt0lug2hdc3peqrvgzxe
 

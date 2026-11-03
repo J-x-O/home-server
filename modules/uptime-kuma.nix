@@ -35,6 +35,7 @@ in
       inherit (cfg) port;
       description = "Is everything up?";
       icon = "uptime-kuma.png";
+      subdomain = "status";
     };
 
     # DynamicUser makes /var/lib/uptime-kuma a symlink; back up the real directory,

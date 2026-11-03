@@ -4,6 +4,7 @@
 
 let
   cfg = config.homelab.dashboard;
+  inherit (config.homelab) domain;
   host = lib.head config.homelab.hostNames;
   port = config.services.homepage-dashboard.listenPort;
 
@@ -12,7 +13,8 @@ let
   tile = name: app: {
     ${name} = {
       inherit (app) description icon;
-      href = "http://${host}:${toString app.port}";
+      href =
+        if domain != null then "https://${app.subdomain}.${domain}" else "http://${host}:${toString app.port}";
       siteMonitor = "http://127.0.0.1:${toString app.port}";
     };
   };
@@ -28,6 +30,10 @@ in
           options = {
             group = lib.mkOption { type = lib.types.str; };
             port = lib.mkOption { type = lib.types.port; };
+            subdomain = lib.mkOption {
+              type = lib.types.str;
+              description = "Served at `<subdomain>.<homelab.domain>` when a domain is set.";
+            };
             description = lib.mkOption { type = lib.types.str; };
             icon = lib.mkOption {
               type = lib.types.str;
@@ -43,7 +49,9 @@ in
     services.homepage-dashboard = {
       enable = true;
       allowedHosts = lib.concatStringsSep "," (
-        config.homelab.hostNames ++ [ "localhost:${toString port}" "127.0.0.1:${toString port}" ]
+        config.homelab.hostNames
+        ++ lib.optional (domain != null) domain
+        ++ [ "localhost:${toString port}" "127.0.0.1:${toString port}" ]
       );
       settings.title = "Homeserver";
       widgets = [

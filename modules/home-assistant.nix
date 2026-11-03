@@ -25,6 +25,16 @@ in
       ];
       config = {
         default_config = { };
+        # Caddy terminates HTTPS in front of it. Since 2026.10, HA imports `http:`
+        # into .storage/http only once (on first start). If this changes later,
+        # set `.data.yaml_migration_done = false` in that file and restart.
+        http = {
+          use_x_forwarded_for = true;
+          trusted_proxies = [
+            "127.0.0.1"
+            "::1"
+          ];
+        };
         # Lets integrations and automations be managed from the web UI.
         "automation ui" = "!include automations.yaml";
         "scene ui" = "!include scenes.yaml";
@@ -40,6 +50,7 @@ in
       port = 8123;
       description = "Smart home";
       icon = "home-assistant.png";
+      subdomain = "ha";
     };
 
     # The UI-managed includes above must exist or Home Assistant won't start.

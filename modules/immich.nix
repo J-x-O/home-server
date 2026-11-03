@@ -24,6 +24,7 @@ in
       port = config.services.immich.port;
       description = "Photos and videos";
       icon = "immich.png";
+      subdomain = "photos";
     };
 
     homelab.backup = {
