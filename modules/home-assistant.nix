@@ -25,9 +25,11 @@ in
       ];
       config = {
         default_config = { };
-        # Caddy terminates HTTPS in front of it. Since 2026.10, HA imports `http:`
-        # into .storage/http only once (on first start). If this changes later,
-        # set `.data.yaml_migration_done = false` in that file and restart.
+        # Caddy terminates HTTPS in front of it. Since 2026.10 this is only the
+        # initial import: HA keeps the effective values in .storage/http and moves
+        # a changed `http:` block to `.data.pending`, which it never promotes by
+        # itself. If 400s reappear, copy `pending` over `stable` in that file and
+        # restart (see README).
         http = {
           use_x_forwarded_for = true;
           trusted_proxies = [

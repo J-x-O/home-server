@@ -92,6 +92,7 @@
   homelab.dashboard.enable = true;
 
   homelab.domain = "home.jesco.dev";
+  homelab.https.challengeDomain = "_acme-challenge.acme.jesco.dev";
   homelab.hostNames = [
     "homeserver"
     "homeserver.fritz.box"
